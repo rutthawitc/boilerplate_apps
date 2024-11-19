@@ -35,6 +35,7 @@ import {
 } from "@/components/ui/sidebar"
 import { handleLogout } from "@/lib/actions/logout-action";
 import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 export function NavUser({
@@ -48,11 +49,18 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar()
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   const onLogout = () => {
     startTransition(async () => {
       try {
-        await handleLogout();
+        const result = await handleLogout();
+        if (result.success) {
+          router.push('/login');
+          router.refresh();
+        } else {
+          toast.error(result.error || "Failed to logout. Please try again.");
+        }
       } catch (error) {
         toast.error("Failed to logout. Please try again.");
       }

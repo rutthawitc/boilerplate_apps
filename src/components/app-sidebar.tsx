@@ -103,8 +103,8 @@ const data = {
       icon: Settings2,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "Users",
+          url: "/users",
         },
         {
           title: "Team",

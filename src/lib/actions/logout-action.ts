@@ -1,9 +1,13 @@
 'use server';
 
 import { logout } from "@/lib/session";
-import { redirect } from "next/navigation";
 
 export async function handleLogout() {
-    await logout();
-    redirect("/login");
+    try {
+        await logout();
+        return { success: true };
+    } catch (error) {
+        console.error('Logout error:', error);
+        return { success: false, error: 'Failed to logout' };
+    }
 }

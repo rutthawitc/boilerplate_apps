@@ -23,6 +23,27 @@ export function useUsers() {
     },
   })
 
+  const addUser = useMutation({
+    mutationFn: async (newUser: Omit<User, "created_at">) => {
+      const { data, error } = await supabase
+        .from("pwa_user")
+        .insert([newUser])
+        .select()
+        .single()
+
+      if (error) {
+        toast.error("Failed to add user")
+        throw error
+      }
+
+      toast.success("User added successfully")
+      return data
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] })
+    },
+  })
+
   const createUser = useMutation({
     mutationFn: async (newUser: Omit<User, "id" | "created_at">) => {
       const { data, error } = await supabase
@@ -36,6 +57,7 @@ export function useUsers() {
         throw error
       }
 
+      toast.success("User created successfully")
       return data
     },
     onSuccess: () => {
@@ -84,6 +106,7 @@ export function useUsers() {
   return {
     users,
     isLoading,
+    addUser,
     createUser,
     updateUser,
     deleteUser,

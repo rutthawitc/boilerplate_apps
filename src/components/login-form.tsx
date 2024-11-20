@@ -25,7 +25,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { login } from "@/lib/actions/login-action"
-import { loginSchema, LoginFormType, LoginError } from "@/lib/validations/auth"
+import { pwa_loginSchema, LoginFormType, LoginError } from "@/lib/validations/auth"
 import { toast } from "sonner"
 
 export function LoginForm() {
@@ -33,10 +33,10 @@ export function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)
   
   const form = useForm<LoginFormType>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(pwa_loginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      username: "",
+      pwd: "",
     },
   })
 
@@ -44,8 +44,8 @@ export function LoginForm() {
     setIsLoading(true)
     try {
       const formData = new FormData()
-      formData.append("email", data.email)
-      formData.append("password", data.password)
+      formData.append("username", data.username)
+      formData.append("pwd", data.pwd)
       
       const result = await login(formData)
       
@@ -76,7 +76,7 @@ export function LoginForm() {
       <CardHeader>
         <CardTitle className="text-2xl">Login</CardTitle>
         <CardDescription>
-          Enter your email below to login to your account
+          Enter your username below to login to your account
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -84,14 +84,14 @@ export function LoginForm() {
           <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
             <FormField
               control={form.control}
-              name="email"
+              name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Username</FormLabel>
                   <FormControl>
                     <Input
-                      type="email"
-                      placeholder="m@example.com"
+                      type="text"
+                      placeholder="Enter your username"
                       disabled={isLoading}
                       {...field}
                     />
@@ -102,7 +102,7 @@ export function LoginForm() {
             />
             <FormField
               control={form.control}
-              name="password"
+              name="pwd"
               render={({ field }) => (
                 <FormItem>
                   <div className="flex items-center">

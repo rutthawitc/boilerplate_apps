@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sidebar"
 import { getSession } from "@/lib/session"
 import { redirect } from "next/navigation"
+import { json } from "stream/consumers"
 
 export default async function Page() {
   const session = await getSession();
@@ -41,7 +42,7 @@ export default async function Page() {
             <div className="aspect-video rounded-xl bg-muted/50" />
             <div className="aspect-video rounded-xl bg-muted/50" />
           </div>
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min"><pre>{JSON.stringify(session, null, 2)}</pre> </div>
         </div>
       </SidebarInset>
     </SidebarProvider>

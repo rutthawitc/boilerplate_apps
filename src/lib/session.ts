@@ -2,8 +2,7 @@ import 'server-only';
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
 
-// Use a constant key for development - in production, use environment variable
-const SECRET_KEY = 'your-super-secret-key-that-is-at-least-32-characters-long';
+const SECRET_KEY = process.env.JWT_SECRET_KEYs;
 
 const key = new TextEncoder().encode(SECRET_KEY);
 

@@ -107,8 +107,8 @@ const data = {
           url: "/users",
         },
         {
-          title: "Team",
-          url: "#",
+          title: "Banned Users",
+          url: "/banned-users",
         },
         {
           title: "Billing",

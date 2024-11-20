@@ -5,6 +5,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { getSession } from "@/lib/session"
+import { redirect } from "next/navigation";
 
 export default async function Page() {
   const session = await getSession()

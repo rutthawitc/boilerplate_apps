@@ -1,3 +1,4 @@
+// src/lib/routes.ts
 /**
  * An array of routes that are accessible to the public
  * These routes do not require authentication

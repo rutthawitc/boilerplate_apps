@@ -1,3 +1,5 @@
+// src/app/(Auth)/banned-users/data-table-row-actions.tsx
+
 "use client"
 
 import { DotsHorizontalIcon } from "@radix-ui/react-icons"

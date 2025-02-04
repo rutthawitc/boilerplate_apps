@@ -1,3 +1,5 @@
+// src/app/(Auth)/banned-users/data-table-view-options.tsx
+
 "use client"
 
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"

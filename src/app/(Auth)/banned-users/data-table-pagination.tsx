@@ -1,3 +1,5 @@
+// src/app/(Auth)/banned-users/data-table-pagination.tsx
+
 "use client"
 
 import {

@@ -1,3 +1,5 @@
+// src/app/(Auth)/banned-users/data-table-column-header.tsx
+
 "use client"
 
 import {

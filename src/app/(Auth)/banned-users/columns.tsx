@@ -1,3 +1,5 @@
+// src/app/(Auth)/banned-users/columns.tsx
+
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"

@@ -1,3 +1,4 @@
+// src/middleware.ts
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { publicRoutes, protectedRoutes, DEFAULT_LOGIN_REDIRECT, authRoutes } from '@/lib/routes'

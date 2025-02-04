@@ -1,3 +1,5 @@
+//  src/app/(Auth)/banned-users/data-table.tsx
+
 "use client"
 
 import * as React from "react"

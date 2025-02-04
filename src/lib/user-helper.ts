@@ -1,3 +1,5 @@
+// src/lib/user-helper.ts
+
 import { supabase } from "./supabase";
 
 export const getUserInfo = async (id: string) => {

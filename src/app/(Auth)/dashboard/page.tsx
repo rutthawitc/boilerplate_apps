@@ -1,3 +1,5 @@
+// src/app/(Auth)/dashboard/page.tsx
+
 import {
   Breadcrumb,
   BreadcrumbItem,

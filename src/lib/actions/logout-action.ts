@@ -1,3 +1,5 @@
+// src/lib/actions/logout-action.ts
+
 'use server';
 
 import { logout } from "@/lib/session";

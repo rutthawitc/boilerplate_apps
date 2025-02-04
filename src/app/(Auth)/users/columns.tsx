@@ -1,3 +1,5 @@
+// src/app/(Auth)/users/columns.tsx
+
 "use client"
 
 import { CellContext, ColumnDef, Row } from "@tanstack/react-table"

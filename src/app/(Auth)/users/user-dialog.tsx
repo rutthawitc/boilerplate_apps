@@ -133,6 +133,7 @@ export function UserDialog({
                       <SelectItem value="admin">Admin</SelectItem>
                       <SelectItem value="user">User</SelectItem>
                       <SelectItem value="radmin">Area Admin</SelectItem>
+                      <SelectItem value="superuser">Superuser</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />

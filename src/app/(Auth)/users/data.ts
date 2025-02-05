@@ -24,4 +24,8 @@ export const roles = [
     value: "radmin",
     label: "RAdmin",
   },
+  {
+    value: "superuser",
+    label: "Superuser",
+  },
 ]

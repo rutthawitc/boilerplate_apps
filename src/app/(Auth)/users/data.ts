@@ -20,4 +20,8 @@ export const roles = [
     value: "user",
     label: "User",
   },
+  {
+    value: "radmin",
+    label: "RAdmin",
+  },
 ]

@@ -1,11 +1,11 @@
 // src/app/(Auth)/users/user-dialog.tsx
 
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { Button } from "@/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -13,7 +13,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -21,18 +21,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { User } from "./columns"
-import { useUsers } from "@/hooks/use-users"
-import { useEffect } from "react"
+} from "@/components/ui/select";
+import { User } from "./columns";
+import { useUsers } from "@/hooks/use-users";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -43,18 +43,18 @@ const formSchema = z.object({
   }),
   status: z.enum(["active", "inactive"]),
   islocked: z.boolean().default(false),
-})
+});
 
 export function UserDialog({
   user,
   open,
   onOpenChange,
 }: {
-  user?: User
-  open: boolean
-  onOpenChange: (open: boolean) => void
+  user?: User;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }) {
-  const { createUser, updateUser } = useUsers()
+  const { createUser, updateUser } = useUsers();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -63,7 +63,7 @@ export function UserDialog({
       status: "active",
       islocked: false,
     },
-  })
+  });
 
   // Reset form when user changes or modal opens/closes
   useEffect(() => {
@@ -73,21 +73,21 @@ export function UserDialog({
         role: user?.role ?? "",
         status: user?.status ?? "active",
         islocked: user?.islocked ?? false,
-      })
+      });
     }
-  }, [form, user, open])
+  }, [form, user, open]);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       if (user) {
-        await updateUser.mutateAsync({ id: user.id, ...values })
+        await updateUser.mutateAsync({ id: user.id, ...values });
       } else {
-        await createUser.mutateAsync(values)
+        await createUser.mutateAsync(values);
       }
-      onOpenChange(false)
-      form.reset()
+      onOpenChange(false);
+      form.reset();
     } catch (error) {
-      console.error("Failed to save user:", error)
+      console.error("Failed to save user:", error);
     }
   }
 
@@ -123,10 +123,7 @@ export function UserDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Role</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    value={field.value}
-                  >
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select a role" />
@@ -135,7 +132,7 @@ export function UserDialog({
                     <SelectContent>
                       <SelectItem value="admin">Admin</SelectItem>
                       <SelectItem value="user">User</SelectItem>
-                      <SelectItem value="guest">Guest</SelectItem>
+                      <SelectItem value="radmin">Area Admin</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -148,10 +145,7 @@ export function UserDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Status</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    value={field.value}
-                  >
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select a status" />
@@ -180,5 +174,5 @@ export function UserDialog({
         </Form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
